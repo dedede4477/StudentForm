@@ -24,35 +24,43 @@ function App() {
     if (!formData.course) newErrors.course = "Choose a course.";
     return newErrors;
   };
-    const handleSubmit = (e) => {
-e.preventDefault();
-const validationErrors = validate();
-if (Object.keys(validationErrors).length > 0) {
-setErrors(validationErrors);
-return;
-}
-setEntries((prev) [...prev, formData]);
-setFormData({ name: "", email: "", course: });
-setErrors({});
-};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validate();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    setEntries((prev) => [...prev, formData]);
+    setFormData({ name: "", email: "", course: "" });
+    setErrors({});
   };
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
-      <input name="name" value={formData.name} onChange={handleChange} />
-      <input name="email" value={formData.email} onChange={handleChange} />
-      <select name="course" value={formData.course} onChange={handleChange}>
-        <option value="">Select a course</option>
-        <option value="react">React</option>
-        <option value="javascript">JavaScript</option>
-        <option value="typescript">TypeScript</option>
-      </select>
-      <button type="submit">Submit</button>
+        <input name="name" value={formData.name} onChange={handleChange} />
+        <input name="email" value={formData.email} onChange={handleChange} />
+        <select name="course" value={formData.course} onChange={handleChange}>
+          <option value="">Select a course</option>
+          <option value="react">React</option>
+          <option value="javascript">JavaScript</option>
+          <option value="typescript">TypeScript</option>
+        </select>
+        <button type="submit">Submit</button>
       </form>
+      <div>
+      {entries.map((entry, index) => (
+        <div key={index}>
+          <p>{entry.name}</p>
+          <p>{entry.email}</p>
+          <p>{entry.course}</p>
+        </div>
+      ))}
+      </div>
     </div>
-
-
   )
 }
 
-export default App
+export default App     
