@@ -38,17 +38,19 @@ function App() {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input name="name" value={formData.name} onChange={handleChange} />
-        <input name="email" value={formData.email} onChange={handleChange} />
-        <select name="course" value={formData.course} onChange={handleChange}>
+    <div className="flex flex-col items-center justify-center min-h-screen gap-4">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4" style={{ width: "300px" }}>
+        <input className="border" name="name" value={formData.name} onChange={handleChange} />
+        <input className="border" name="email" value={formData.email} onChange={handleChange} />
+        <select className="border" name="course" value={formData.course} onChange={handleChange}>
           <option value="">Select a course</option>
           <option value="react">React</option>
           <option value="javascript">JavaScript</option>
           <option value="typescript">TypeScript</option>
         </select>
-        <button type="submit">Submit</button>
+        <button className="bg-blue-500 text-white px-4 py-2 rounded" type="submit">
+          Submit
+        </button>
       </form>
       <div>
       {entries.map((entry, index) => (
